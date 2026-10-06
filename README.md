@@ -34,12 +34,12 @@ python -m http.server 8080
 后端地址在 `src/js/api.js` 顶部集中配置：
 
 ```js
-const API_BASE_URL = 'http://127.0.0.1:5000/api';
+const API_BASE_URL = 'https://832401327.pythonanywhere.com/api';
 ```
 
-- 本地联调：保持默认即可（后端默认监听 `127.0.0.1:5000`）。
-- 部署联调：改成后端部署后的公网地址，例如
-  `https://your-backend.onrender.com/api`。
+- 本地联调：改为 `http://127.0.0.1:5000/api`（后端默认监听 `127.0.0.1:5000`）。
+- 线上部署：当前已配置为 PythonAnywhere 地址
+  `https://832401327.pythonanywhere.com/api`。
 
 ## 数据库初始化
 

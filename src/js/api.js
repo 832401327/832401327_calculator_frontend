@@ -4,7 +4,8 @@
 'use strict';
 
 // 后端服务地址：部署时只需修改这一行（末尾保留 /api）
-const API_BASE_URL = 'http://127.0.0.1:5000/api';
+// 本地联调用 http://127.0.0.1:5000/api；线上为 PythonAnywhere 部署地址
+const API_BASE_URL = 'https://832401327.pythonanywhere.com/api';
 
 /**
  * 发送 HTTP 请求并返回解析后的 JSON。
