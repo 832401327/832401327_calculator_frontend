@@ -1,0 +1,357 @@
+/* ============================================================
+   前后端分离计算器 — 样式
+   主题方案：CSS 变量定义明/暗两套配色，body.dark 切换暗色主题
+   ============================================================ */
+
+:root {
+  --bg: #eef1f6;
+  --card-bg: #ffffff;
+  --text: #1f2329;
+  --text-secondary: #8a919f;
+  --border: #e4e7ed;
+  --key-bg: #f3f4f6;
+  --key-hover: #e8eaee;
+  --number-bg: #fafbfc;
+  --operator-bg: #e8f0fe;
+  --operator-text: #1a66d6;
+  --equals-bg: #1a66d6;
+  --equals-text: #ffffff;
+  --danger: #d93026;
+  --feedback: #1a66d6;
+  --shadow: 0 8px 24px rgba(31, 35, 41, 0.08);
+}
+
+body.dark {
+  --bg: #14161a;
+  --card-bg: #1e2128;
+  --text: #e9eaee;
+  --text-secondary: #9aa1ad;
+  --border: #2c3038;
+  --key-bg: #2a2e37;
+  --key-hover: #343945;
+  --number-bg: #24272f;
+  --operator-bg: #22314c;
+  --operator-text: #7aa7f0;
+  --equals-bg: #2f6fed;
+  --equals-text: #ffffff;
+  --danger: #ef5350;
+  --feedback: #7aa7f0;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.25s, color 0.25s;
+}
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 40px 16px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+  transition: background 0.25s, border-color 0.25s;
+}
+
+/* ---------- 计算器 ---------- */
+
+.calculator {
+  width: 360px;
+}
+
+.calc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.calc-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.icon-btn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--key-bg);
+  color: var(--text);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: var(--key-hover);
+}
+
+.display {
+  background: var(--number-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  min-height: 92px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.expression {
+  font-size: 24px;
+  font-weight: 500;
+  word-break: break-all;
+  text-align: right;
+  min-height: 34px;
+}
+
+.feedback {
+  font-size: 18px;
+  text-align: right;
+  color: var(--feedback);
+  word-break: break-all;
+  min-height: 26px;
+}
+
+.feedback.error {
+  color: var(--danger);
+  font-size: 14px;
+}
+
+/* ---------- 按键 ---------- */
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.key {
+  height: 52px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 17px;
+  cursor: pointer;
+  background: var(--key-bg);
+  color: var(--text);
+  transition: background 0.15s, transform 0.05s;
+}
+
+.key:active {
+  transform: scale(0.96);
+}
+
+.key:hover {
+  background: var(--key-hover);
+}
+
+.key.number {
+  background: var(--number-bg);
+}
+
+.key.operator {
+  background: var(--operator-bg);
+  color: var(--operator-text);
+  font-weight: 600;
+}
+
+.key.equals {
+  grid-column: span 2;
+  background: var(--equals-bg);
+  color: var(--equals-text);
+  font-weight: 600;
+}
+
+/* ---------- 历史 ---------- */
+
+.history {
+  width: 380px;
+  max-height: 640px;
+  display: flex;
+  flex-direction: column;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.history-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.danger-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--danger);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.danger-btn:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+.search-input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--number-bg);
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 12px;
+}
+
+.search-input:focus {
+  border-color: var(--equals-bg);
+}
+
+.history-list {
+  list-style: none;
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.history-expression {
+  font-size: 15px;
+  word-break: break-all;
+}
+
+.history-time {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 3px;
+}
+
+.history-empty {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  padding: 28px 0;
+}
+
+.delete-btn {
+  flex-shrink: 0;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+/* ---------- 确认弹窗 ---------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 18, 25, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 22px 24px;
+  width: 300px;
+  max-width: calc(100vw - 32px);
+}
+
+.modal-message {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-btn {
+  padding: 7px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--key-bg);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.modal-btn:hover {
+  background: var(--key-hover);
+}
+
+.modal-btn-danger {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+}
+
+.modal-btn-danger:hover {
+  opacity: 0.9;
+  background: var(--danger);
+}
+
+/* ---------- 响应式 ---------- */
+
+@media (max-width: 800px) {
+  .calculator,
+  .history {
+    width: 100%;
+    max-width: 420px;
+  }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>前后端分离计算器</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="layout">
+
+    <!-- 左侧：计算器 -->
+    <section class="card calculator">
+      <header class="calc-header">
+        <h1>计算器</h1>
+        <button id="themeToggle" class="icon-btn" title="切换明暗主题">◐</button>
+      </header>
+
+      <!-- 显示区：表达式 + 后端返回的结果/错误信息 -->
+      <div class="display">
+        <div id="expression" class="expression">0</div>
+        <div id="feedback" class="feedback"></div>
+      </div>
+
+      <!-- 按键区：data-insert 直接拼入表达式，data-action 触发动作 -->
+      <div class="keypad" id="keypad">
+        <button class="key function" data-action="clear">C</button>
+        <button class="key function" data-action="backspace">&larr;</button>
+        <button class="key function" data-insert="(">(</button>
+        <button class="key function" data-insert=")">)</button>
+        <button class="key function" data-insert="sqrt(">√</button>
+
+        <button class="key number" data-insert="7">7</button>
+        <button class="key number" data-insert="8">8</button>
+        <button class="key number" data-insert="9">9</button>
+        <button class="key operator" data-insert="/">÷</button>
+        <button class="key function" data-action="square">x²</button>
+
+        <button class="key number" data-insert="4">4</button>
+        <button class="key number" data-insert="5">5</button>
+        <button class="key number" data-insert="6">6</button>
+        <button class="key operator" data-insert="*">×</button>
+        <button class="key function" data-insert="%">%</button>
+
+        <button class="key number" data-insert="1">1</button>
+        <button class="key number" data-insert="2">2</button>
+        <button class="key number" data-insert="3">3</button>
+        <button class="key operator" data-insert="-">−</button>
+        <button class="key function" data-insert="^">^</button>
+
+        <button class="key number" data-insert="0">0</button>
+        <button class="key number" data-insert=".">.</button>
+        <button class="key operator" data-insert="+">+</button>
+        <button class="key equals" data-action="equals">=</button>
+      </div>
+    </section>
+
+    <!-- 右侧：计算历史 -->
+    <section class="card history">
+      <header class="history-header">
+        <h2>计算历史</h2>
+        <button id="clearAll" class="danger-btn">清空全部</button>
+      </header>
+
+      <input id="historySearch" class="search-input" type="text"
+             placeholder="搜索表达式，例如 1+2" autocomplete="off">
+
+      <ul id="historyList" class="history-list"></ul>
+    </section>
+
+  </main>
+
+  <!-- 自定义确认弹窗（替代 window.confirm，便于跨浏览器一致展示） -->
+  <div id="confirmModal" class="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="confirmMessage">
+      <p id="confirmMessage" class="modal-message"></p>
+      <div class="modal-actions">
+        <button id="confirmCancel" class="modal-btn">取消</button>
+        <button id="confirmOk" class="modal-btn modal-btn-danger">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/history.js"></script>
+  <script src="js/calculator.js"></script>
+</body>
+</html>
